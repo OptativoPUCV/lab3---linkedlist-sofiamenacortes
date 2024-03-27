@@ -33,12 +33,18 @@ List * createList() {
     newList->head = NULL;
     newList->tail = NULL;
     newList->current = NULL;
-    return newList;
-     //return NULL;
+    return newList;   
 }
 
 void * firstList(List * list) {
-    return NULL;
+    if (list == NULL || list->head == NULL)
+    {
+        return NULL;
+    }
+    list->current = list->head;
+    return list->current->data;
+  
+    //return NULL;
 }
 
 void * nextList(List * list) {
