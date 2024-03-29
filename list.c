@@ -100,6 +100,26 @@ void pushBack(List * list, void * data) {
 }
 
 void pushCurrent(List * list, void * data) {
+    if(list == NULL || list->current == NULL)
+    {
+        return;
+    }
+  Node* newNode = createNode(data);
+  newNode->prev = list->current;
+  newNode->next = list->current->next;
+
+  if(list->current->next !=NULL)
+  {
+    list->current->next->prev = newNode; //el nodo que estaba despues del current se convierte en el prev del nuevo nodo
+  }
+  else{
+    list->tail = newNode; //si el current era el ultimo nodo, el nuevo nodo se convierte en el nuevo
+  }
+
+  list->current->next = newNode;
+  list->current = newNode;
+  list->size++;
+  
 }
 
 void * popFront(List * list) {
