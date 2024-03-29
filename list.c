@@ -77,20 +77,16 @@ void * prevList(List * list) {
 }
 
 void pushFront(List * list, void * data) {
-    Node * newNode = createNode(data);
-    if (list->head == NULL)
-    {
-        list->tail = newNode;
-    }
-    else
-    {
-        list->head->prev = newNode;      
-    }
-    //list->head = newNode;
-    if (list->current == NULL)
-    {
-      list->current = newNode;
-    }
+  Node* newNode = (Node*)malloc(sizeof(Node));
+  newNode->data = data;
+  newNode->prev = NULL;
+  newNode->next = list->head;
+  if(list->head) 
+  {
+    list->head->prev = newNode;
+  }
+  list->head = newNode;
+  list->size++;  
   
 }
 
@@ -121,3 +117,18 @@ void cleanList(List * list) {
         popFront(list);
     }
 }
+
+/* Node * newNode = createNode(data);
+if (list->head == NULL)
+{
+    list->tail = newNode;
+}
+else
+{
+    list->head->prev = newNode;      
+}
+//list->head = newNode;
+if (list->current == NULL)
+{
+  list->current = newNode;
+}*/
